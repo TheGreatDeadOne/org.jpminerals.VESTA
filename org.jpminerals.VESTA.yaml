@@ -1,0 +1,114 @@
+id: org.jpminerals.VESTA
+runtime: org.freedesktop.Platform
+runtime-version: '25.08'
+sdk: org.freedesktop.Sdk
+command: VESTA
+
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk17
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --socket=fallback-x11
+  - --device=dri
+  - --filesystem=xdg-download
+  - --filesystem=xdg-documents
+  - --env=GTK_USE_PORTAL=1
+
+modules:
+  - name: openjdk
+    buildsystem: simple
+    build-commands:
+      - install -d /app/jre
+      - cp -a /usr/lib/sdk/openjdk17/* /app/jre/
+
+  - name: glu
+    buildsystem: meson
+    config-opts:
+      - -Dgl_provider=gl
+    sources:
+      - type: archive
+        url: https://archive.mesa3d.org/glu/glu-9.0.3.tar.xz
+        sha256: bd43fe12f374b1192eb15fe20e45ff456b9bc26ab57f0eee919f96ca0f8a330f
+
+  - name: wxwidgets
+    buildsystem: autotools
+    config-opts:
+      - --with-gtk=3
+      - --with-opengl
+      - --enable-shared
+      - --disable-debug
+      - --disable-tests
+      - --disable-webview
+      - --without-libjbig
+    sources:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.11/wxWidgets-3.2.11.tar.bz2
+        sha256: 6a129015bce2e914e4bf61ec4411854ad962801d47e92f2eb8340adb6a90af08
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /share/aclocal
+      - /bin/wx-config
+
+  - name: vesta
+    buildsystem: simple
+    build-commands:
+      - install -d /app/lib/VESTA
+      - install -d /app/share/icons/hicolor/256x256/apps
+      - install -d /app/bin
+      
+      # CÓPIA À PROVA DE FALHAS: Funciona com OU SEM strip-components: 1
+      - |
+        echo "--- Conteúdo extraído pelo flatpak-builder ---"
+        ls -la
+        
+        if [ -d "VESTA-gtk3-x86_64" ]; then
+          echo "Modo: Copiando a partir do diretório 'VESTA-gtk3-x86_64'..."
+          cp -a VESTA-gtk3-x86_64/. /app/lib/VESTA/
+        else
+          echo "Modo: Copiando a partir da raiz do build (strip-components ativo)..."
+          # O comando 'find' é muito mais seguro que 'cp -a .' no sandbox do Flatpak
+          find . -mindepth 1 -maxdepth 1 -exec cp -a {} /app/lib/VESTA/ \;
+        fi
+        
+        echo "--- Conteúdo copiado para /app/lib/VESTA ---"
+        ls -la /app/lib/VESTA/
+      
+      # Agora este comando funcionará, pois a estrutura foi garantida acima
+      - cp /app/lib/VESTA/img/logo.png /app/share/icons/hicolor/256x256/apps/org.jpminerals.VESTA.png
+      
+      # WORKAROUND: Symlinks corrigidos e completos para WebKit2GTK 4.0 -> 4.1
+      - ln -s /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 /app/lib/VESTA/libwebkit2gtk-4.0.so.37
+      - ln -s /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.1.so.0 /app/lib/VESTA/libjavascriptcoregtk-4.0.so.18
+      
+      - |
+        echo '#!/bin/sh
+        export PATH="/app/jre/bin:$PATH"
+        export JAVA_HOME="/app/jre"
+        export LD_LIBRARY_PATH="/app/lib/VESTA:/app/lib/VESTA/PowderPlot:$LD_LIBRARY_PATH"
+        export GDK_BACKEND=x11
+        cd /app/lib/VESTA
+        exec ./VESTA "$@"' > /app/bin/VESTA
+        
+      - chmod +x /app/bin/VESTA
+      - chmod +x /app/lib/VESTA/VESTA
+      - chmod +x /app/lib/VESTA/VESTA-gui
+      - chmod +x /app/lib/VESTA/VESTA-core
+      - chmod +x /app/lib/VESTA/madel
+      - chmod +x /app/lib/VESTA/STRUCTURE_TIDY/structure_tidy
+      
+      - chmod 644 /app/lib/VESTA/libVESTA.so
+      - chmod 644 /app/lib/VESTA/PowderPlot/*.so
+      
+      - install -Dm644 desktop/org.jpminerals.VESTA.desktop /app/share/applications/org.jpminerals.VESTA.desktop
+      
+    sources:
+      - type: archive
+        url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-x86_64.tar.xz
+        sha256: 119af902715dc1f4f6a65b00f98ba354f57a8aac4ff8fd1cdd03d661050ec397
+      - type: file
+        path: desktop/org.jpminerals.VESTA.desktop

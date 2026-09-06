@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=VESTA
+GenericName=Crystal Structure Visualizer
+Comment=Visualization for Electronic and Structural Analysis
+Exec=VESTA %f
+Icon=org.vesta.VESTA
+Terminal=false
+Type=Application
+Categories=Science;Physics;Chemistry;Education;
+MimeType=text/x-cif;chemical/x-cif;chemical/x-xyz;application/x-vesta;application/x-vasp;
+StartupNotify=false
