@@ -11,7 +11,6 @@ finish-args:
   - --share=ipc
   - --share=network
   - --socket=wayland
-  - --socket=pulseaudio
   - --socket=fallback-x11
   - --device=dri
   - --filesystem=xdg-download
@@ -19,6 +18,51 @@ finish-args:
   - --env=GTK_USE_PORTAL=1
 
 modules:
+  - name: ruby
+    buildsystem: autotools
+    config-opts:
+      - --prefix=/app
+      - --disable-install-doc
+    sources:
+      - type: archive
+        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.xz
+        sha256: 9c9d121fe3314ea7c801e690b9de981d2b9d12d7849db99c27482468a541ba0a
+    cleanup:
+      - /ruby/include
+      - /ruby/share/man
+
+  - name: unifdef
+    buildsystem: simple
+    build-commands:
+      - sed -i 's/constexpr/const_expr/g' unifdef.c
+      - make
+      - make prefix=/app install
+    sources:
+      - type: archive
+        url: https://dotat.at/prog/unifdef/unifdef-2.12.tar.gz
+        sha256: fba564a24db7b97ebe9329713ac970627b902e5e9e8b14e19e024eb6e278d10b
+
+  - name: webkitgtk-4.0
+    buildsystem: cmake-ninja
+    make-args:
+      - -j8
+    config-opts:
+      - -DPORT=GTK
+      - -DUSE_GTK4=OFF
+      - -DENABLE_INTROSPECTION=OFF
+      - -DENABLE_BUBBLEWRAP_SANDBOX=OFF
+      - -DUSE_WPE_RENDERER=OFF
+      - -DENABLE_GAMEPAD=OFF
+      - -DENABLE_SPELLCHECK=OFF
+      - -DUSE_WOFF2=OFF
+      - -DENABLE_SPEECH_SYNTHESIS=OFF
+      - -DUSE_LIBBACKTRACE=OFF
+      - -DUSE_SYSTEM_SYSPROF_CAPTURE=NO
+    sources:
+      - type: archive
+        url: https://webkitgtk.org/releases/webkitgtk-2.53.92.tar.xz
+        sha256: 2ab7d6b3d586539fac574401a9bfe571c098f85f7835232ae0bc0bae9c9c5bd7
+  
   - name: openjdk
     buildsystem: simple
     build-commands:
@@ -58,57 +102,28 @@ modules:
     buildsystem: simple
     build-commands:
       - install -d /app/lib/VESTA
-      - install -d /app/share/icons/hicolor/256x256/apps
+      - cp -a * /app/lib/VESTA/
+      
       - install -d /app/bin
-      
-      # CÓPIA À PROVA DE FALHAS: Funciona com OU SEM strip-components: 1
       - |
-        echo "--- Conteúdo extraído pelo flatpak-builder ---"
-        ls -la
-        
-        if [ -d "VESTA-gtk3-x86_64" ]; then
-          echo "Modo: Copiando a partir do diretório 'VESTA-gtk3-x86_64'..."
-          cp -a VESTA-gtk3-x86_64/. /app/lib/VESTA/
-        else
-          echo "Modo: Copiando a partir da raiz do build (strip-components ativo)..."
-          # O comando 'find' é muito mais seguro que 'cp -a .' no sandbox do Flatpak
-          find . -mindepth 1 -maxdepth 1 -exec cp -a {} /app/lib/VESTA/ \;
-        fi
-        
-        echo "--- Conteúdo copiado para /app/lib/VESTA ---"
-        ls -la /app/lib/VESTA/
-      
-      # Agora este comando funcionará, pois a estrutura foi garantida acima
-      - cp /app/lib/VESTA/img/logo.png /app/share/icons/hicolor/256x256/apps/org.jpminerals.VESTA.png
-      
-      # WORKAROUND: Symlinks corrigidos e completos para WebKit2GTK 4.0 -> 4.1
-      - ln -s /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 /app/lib/VESTA/libwebkit2gtk-4.0.so.37
-      - ln -s /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.1.so.0 /app/lib/VESTA/libjavascriptcoregtk-4.0.so.18
-      
-      - |
-        echo '#!/bin/sh
+        cat > /app/bin/VESTA << 'EOF'
+        #!/bin/sh
         export PATH="/app/jre/bin:$PATH"
         export JAVA_HOME="/app/jre"
         export LD_LIBRARY_PATH="/app/lib/VESTA:/app/lib/VESTA/PowderPlot:$LD_LIBRARY_PATH"
         export GDK_BACKEND=x11
         cd /app/lib/VESTA
-        exec ./VESTA "$@"' > /app/bin/VESTA
-        
+        exec ./VESTA "$@"
+        EOF
       - chmod +x /app/bin/VESTA
-      - chmod +x /app/lib/VESTA/VESTA
-      - chmod +x /app/lib/VESTA/VESTA-gui
-      - chmod +x /app/lib/VESTA/VESTA-core
-      - chmod +x /app/lib/VESTA/madel
-      - chmod +x /app/lib/VESTA/STRUCTURE_TIDY/structure_tidy
+      - chmod +x /app/lib/VESTA/VESTA /app/lib/VESTA/VESTA-gui /app/lib/VESTA/VESTA-core /app/lib/VESTA/madel /app/lib/VESTA/STRUCTURE_TIDY/structure_tidy
       
-      - chmod 644 /app/lib/VESTA/libVESTA.so
-      - chmod 644 /app/lib/VESTA/PowderPlot/*.so
-      
-      - install -Dm644 desktop/org.jpminerals.VESTA.desktop /app/share/applications/org.jpminerals.VESTA.desktop
-      
+      - install -Dm644 /app/lib/VESTA/img/logo.png /app/share/icons/hicolor/256x256/apps/org.jpminerals.VESTA.png
+      - install -Dm644 org.jpminerals.VESTA.desktop /app/share/applications/org.jpminerals.VESTA.desktop
     sources:
       - type: archive
         url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-x86_64.tar.xz
         sha256: 119af902715dc1f4f6a65b00f98ba354f57a8aac4ff8fd1cdd03d661050ec397
+        strip-components: 1
       - type: file
         path: desktop/org.jpminerals.VESTA.desktop
