@@ -11,24 +11,14 @@ finish-args:
   - --share=ipc
   - --share=network
   - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
   - --device=dri
+  - --talk-name=org.freedesktop.Notifications
   - --filesystem=xdg-download
   - --filesystem=xdg-documents
   - --env=GTK_USE_PORTAL=1
 
 modules:
-#  - name: unifdef
-#    buildsystem: simple
-#    build-commands:
-#      - sed -i 's/constexpr/const_expr/g' unifdef.c
-#      - make
-#      - make prefix=/app install
-#    sources:
-#      - type: archive
-#        url: https://dotat.at/prog/unifdef/unifdef-2.12.tar.gz
-#        sha256: fba564a24db7b97ebe9329713ac970627b902e5e9e8b14e19e024eb6e278d10b
-
   - name: openjdk
     buildsystem: simple
     build-commands:
@@ -84,8 +74,16 @@ modules:
       - chmod +x /app/bin/VESTA
       - chmod +x /app/lib/VESTA/VESTA /app/lib/VESTA/VESTA-gui /app/lib/VESTA/VESTA-core /app/lib/VESTA/madel /app/lib/VESTA/STRUCTURE_TIDY/structure_tidy
       
+      - mkdir -p "$XDG_CONFIG_HOME"
+      - ln -sf "$XDG_CONFIG_HOME/.VESTA" "$HOME/.VESTA"
+        
       - install -Dm644 /app/lib/VESTA/img/logo.png /app/share/icons/hicolor/256x256/apps/org.jpminerals.VESTA.png
       - install -Dm644 org.jpminerals.VESTA.desktop /app/share/applications/org.jpminerals.VESTA.desktop
+      - install -Dm644 org.jpminerals.VESTA.xml /app/share/mime/packages/org.jpminerals.VESTA.xml
+
+      - ln -s /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 /app/lib/VESTA/libwebkit2gtk-4.0.so.37
+      - ln -s /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.1.so.0 /app/lib/VESTA/libjavascriptcoregtk-4.0.so.18
+
     sources:
       - type: archive
         url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-x86_64.tar.xz
