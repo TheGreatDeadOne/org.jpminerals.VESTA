@@ -9,9 +9,7 @@
   <summary>3D visualization program for structural models and volumetric data</summary>
   <summary xml:lang="pt_BR">Programa de visualização 3D para modelos estruturais e dados volumétricos</summary>
   <summary xml:lang="es">Programa de visualización 3D para modelos estructurales y datos volumétricos</summary>
-  <summary xml:lang="fr">Programme de visualisation 3D pour modèles structuraux et données volumétriques</summary>
-  <summary xml:lang="ja">構造モデルと体積データのための3D可視化プログラム</summary>
-
+  
   <description>
     <p>VESTA is a 3D visualization program for structural models, volumetric data such as electron/nuclear densities, and crystal morphologies.</p>
 
@@ -60,56 +58,12 @@
     <p>VESTA es el sucesor de dos programas de visualización 3D, VICS y VEND, del paquete de software VENUS. Se ofrece de forma gratuita para uso no comercial.</p>
   </description>
 
-  <description xml:lang="fr">
-    <p>VESTA est un programme de visualisation 3D pour les modèles structuraux, les données volumétriques telles que les densités électroniques/nucléaires, et les morphologies cristallines.</p>
-
-    <p>Parmi les fonctionnalités novatrices de VESTA figurent :</p>
-
-    <ul>
-      <li>Gère plusieurs modèles structuraux, données volumétriques et morphologies cristallines dans la même fenêtre.</li>
-      <li>Prend en charge plusieurs onglets correspondant à des fichiers.</li>
-      <li>Gère un nombre pratiquement illimité d'objets tels que les atomes, les liaisons, les polyèdres et les polygones sur les isosurfaces.</li>
-      <li>Prend en charge la transformation de réseau d'un système conventionnel vers un système non conventionnel à l'aide d'une matrice.</li>
-      <li>Visualise les distances interatomiques et les angles de liaison contraints dans l'analyse Rietveld avec RIETAN-FP.</li>
-    </ul>
-
-    <p>VESTA est le successeur de deux programmes de visualisation 3D, VICS et VEND, du logiciel VENUS. Il est mis à disposition gratuitement pour un usage non commercial.</p>
-  </description>
-
-  <description xml:lang="ja">
-    <p>VESTAは、構造モデル、電子密度・核密度などの体積データ、および結晶形態を表示するための3D可視化プログラムです。</p>
-
-    <p>VESTAの新しい機能の一部:</p>
-
-    <ul>
-      <li>同じウィンドウ内で複数の構造モデル、体積データ、結晶形態を扱うことができます。</li>
-      <li>ファイルに対応した複数のタブをサポートします。</li>
-      <li>原子、結合、多面体、等値面上の多角形など、事実上無制限の数のオブジェクトを扱うことができます。</li>
-      <li>行列を使用した、慣用格子から非慣用格子への格子変換をサポートします。</li>
-      <li>RIETAN-FPによるリートベルト解析で拘束された原子間距離と結合角を可視化します。</li>
-    </ul>
-
-    <p>VESTAは、VENUSソフトウェアパッケージのVICSとVENDという2つの3D可視化プログラムの後継です。非商用利用者には無償で提供されています。</p>
-  </description>
-
   <categories>
     <category>Science</category>
     <category>Chemistry</category>
     <category>Physics</category>
     <category>Education</category>
   </categories>
-
-  <!-- TODO: troque pela(s) URL(s) real(is) dos seus screenshots (PNG/JPEG hospedados por você) -->
-  <screenshots>
-    <screenshot type="default">
-      <caption>Main window with a crystal structure loaded</caption>
-      <caption xml:lang="pt_BR">Janela principal com uma estrutura cristalina carregada</caption>
-      <caption xml:lang="es">Ventana principal con una estructura cristalina cargada</caption>
-      <caption xml:lang="fr">Fenêtre principale avec une structure cristalline chargée</caption>
-      <caption xml:lang="ja">結晶構造を読み込んだメインウィンドウ</caption>
-      <image>https://SEU-DOMINIO-OU-REPO/screenshots/vesta-main.png</image>
-    </screenshot>
-  </screenshots>
 
   <url type="homepage">https://jp-minerals.org/vesta/</url>
   <url type="help">https://groups.google.com/g/vesta-discuss</url>
