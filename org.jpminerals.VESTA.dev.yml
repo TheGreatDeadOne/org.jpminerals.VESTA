@@ -4,7 +4,7 @@ runtime-version: '50'
 sdk: org.gnome.Sdk
 command: VESTA
 separate-locales: false
-default-branch: dev
+default-branch: testing
 
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.openjdk17
@@ -19,8 +19,6 @@ finish-args:
   - --filesystem=xdg-download
   - --filesystem=xdg-documents
   - --env=GTK_USE_PORTAL=1
-#  - --env=PATH=/app/bin:/app/jre/bin:/app/lib/VESTA:/app/lib/VESTA/STRUCTURE_TIDY:/usr/bin:/bin
-#  - --env=JAVA_HOME=/app/jre
   - --env=LD_LIBRARY_PATH=/app/lib/VESTA:/app/lib/VESTA/PowderPlot
   - --env=GDK_BACKEND=x11
 
