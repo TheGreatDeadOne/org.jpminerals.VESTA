@@ -6,6 +6,7 @@ command: VESTA
 separate-locales: false
 default-branch: testing
 tags:
+  - beta
   - proprietary
 
 sdk-extensions:
@@ -55,9 +56,9 @@ modules:
       - --disable-webview
       - --without-libjbig
     sources:
-      - type: archive
+      - type: git
         url: https://github.com/wxWidgets/wxWidgets.git
-        tag: 3.3.3.1
+        tag: v3.3.3.1
         commit: 565553ee980e925bbd8b3cdaeea0eb9f453d7dfd
     cleanup:
       - /include
@@ -81,8 +82,11 @@ modules:
       - install -Dm644 org.jpminerals.VESTA.desktop /app/share/applications/org.jpminerals.VESTA.desktop
       - install -Dm644 org.jpminerals.VESTA.xml /app/share/mime/packages/org.jpminerals.VESTA.xml
       - install -Dm644 /app/lib/VESTA/LICENSE /app/share/licenses/org.jpminerals.VESTA/LICENSE
-      - install -Dm644 /app/lib/VESTA/Library_License/COPYING.GL2PS /app/share/licenses/org.jpminerals.VESTA/COPYING.GL2PS
-      - install -Dm644 /app/lib/VESTA/Library_License/JasPer_LICENSE /app/share/licenses/org.jpminerals.VESTA/JasPer_LICENSE
+      - install -Dm644 /app/lib/VESTA/Library_License/GL2PS_License.txt /app/share/licenses/org.jpminerals.VESTA/GL2PS_License.txt
+      - install -Dm644 /app/lib/VESTA/Library_License/JasPer_LICENSE.txt /app/share/licenses/org.jpminerals.VESTA/JasPer_LICENSE.txt
+      - install -Dm644 /app/lib/VESTA/Library_License/PocketFFT_LICENSE.txt /app/share/licenses/org.jpminerals.VESTA/PocketFFT_LICENSE.txt
+      - install -Dm644 /app/lib/VESTA/Library_License/OpenBLAS_LICENSE.txt /app/share/licenses/org.jpminerals.VESTA/OpenBLAS_LICENSE.txt
+      - install -Dm644 /app/lib/VESTA/Library_License/GotoBLAS_00License.txt /app/share/licenses/org.jpminerals.VESTA/GotoBLAS_00License.txt
     sources:
       - type: archive
         url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-x86_64.tar.xz
@@ -92,7 +96,8 @@ modules:
           - x86_64
 #     - type: archive
 #       url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-arm64.tar.xz 
-#       sha256: c2a552d8bcd68cf5b25d698f2330d6b345469286c8f18990bd4a1c93c587bf84 
+#       sha256: c2a552d8bcd68cf5b25d698f2330d6b345469286c8f18990bd4a1c93c587bf84
+#       strip-components: 1 
 #       only-arches:
 #          - aarch64
 
