@@ -23,6 +23,31 @@
     <p>VESTA is a successor to two 3D visualization programs, VICS and VEND, in the VENUS software package. It is contributed free of charge for non-commercial users.</p>
   </description>
 
+<description xml:lang="pt-BR">
+  <p>VESTA é um programa de visualização 3D para modelos estruturais, dados volumétricos, como densidades eletrônicas/nucleares, e morfologias cristalinas.</p>
+  <p>Alguns dos recursos inovadores do VESTA são:</p>
+  <ul>
+    <li>Permite trabalhar com múltiplos modelos estruturais, dados volumétricos e morfologias cristalinas na mesma janela.</li>
+    <li>Oferece suporte a múltiplas abas correspondentes aos arquivos.</li>
+    <li>Permite trabalhar com um número praticamente ilimitado de objetos, como átomos, ligações, poliedros e polígonos em isosuperfícies.</li>
+    <li>Permite realizar transformações de rede de uma célula convencional para uma rede não convencional utilizando matrizes.</li>
+    <li>Permite visualizar distâncias interatômicas e ângulos de ligação restringidos na análise de Rietveld com o RIETAN-FP.</li>
+  </ul>
+  <p>VESTA é o sucessor de dois programas de visualização 3D, VICS e VEND, do pacote de software VENUS. É disponibilizado gratuitamente para usuários não comerciais.</p>
+</description>
+
+<description xml:lang="es">
+  <p>VESTA es un programa de visualización 3D para modelos estructurales, datos volumétricos, como densidades electrónicas/nucleares, y morfologías cristalinas.</p>
+  <p>Algunas de las características novedosas de VESTA son:</p>
+  <ul>
+    <li>Permite trabajar con múltiples modelos estructurales, datos volumétricos y morfologías cristalinas en la misma ventana.</li>
+    <li>Admite múltiples pestañas correspondientes a los archivos.</li>
+    <li>Permite trabajar con un número prácticamente ilimitado de objetos, como átomos, enlaces, poliedros y polígonos en isosuperficies.</li>
+    <li>Admite la transformación de la red convencional a una red no convencional mediante matrices.</li>
+    <li>Permite visualizar distancias interatómicas y ángulos de enlace restringidos en el análisis de Rietveld con RIETAN-FP.</li>
+  </ul>
+  <p>VESTA es el sucesor de dos programas de visualización 3D, VICS y VEND, incluidos en el paquete de software VENUS. Se ofrece gratuitamente a usuarios no comerciales.</p>
+
   <categories>
     <category>Science</category>
     <category>Chemistry</category>
