@@ -3,6 +3,8 @@ runtime: org.gnome.Platform
 runtime-version: '50'
 sdk: org.gnome.Sdk
 command: VESTA
+separate-locales: false
+default-branch: dev
 
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.openjdk17
@@ -17,14 +19,14 @@ finish-args:
   - --filesystem=xdg-download
   - --filesystem=xdg-documents
   - --env=GTK_USE_PORTAL=1
-  - --env=PATH=/app/bin:/app/jre/bin:/app/lib/VESTA:/app/lib/VESTA/STRUCTURE_TIDY:/usr/bin:/bin
-  - --env=JAVA_HOME=/app/jre
+#  - --env=PATH=/app/bin:/app/jre/bin:/app/lib/VESTA:/app/lib/VESTA/STRUCTURE_TIDY:/usr/bin:/bin
+#  - --env=JAVA_HOME=/app/jre
   - --env=LD_LIBRARY_PATH=/app/lib/VESTA:/app/lib/VESTA/PowderPlot
   - --env=GDK_BACKEND=x11
 
 build-options:
   no-debuginfo: true
-  
+
 modules:
   - name: openjdk
     buildsystem: simple
@@ -66,14 +68,13 @@ modules:
     build-commands:
       - install -d /app/lib/VESTA
       - cp -a * /app/lib/VESTA/
-      
       - install -d /app/bin
       - install -m 755 vesta.sh /app/bin/VESTA
-      
+
       - chmod +x /app/lib/VESTA/VESTA /app/lib/VESTA/VESTA-gui /app/lib/VESTA/VESTA-core /app/lib/VESTA/madel /app/lib/VESTA/STRUCTURE_TIDY/structure_tidy
-    
+
       - ln -s /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 /app/lib/VESTA/libwebkit2gtk-4.0.so.37
-      - ln -s /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.1.so.0 /app/lib/VESTA/libjavascriptcoregtk-4.0.so.18 
+      - ln -s /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.1.so.0 /app/lib/VESTA/libjavascriptcoregtk-4.0.so.18
 
       - install -Dm644 /app/lib/VESTA/img/logo@2x.png /app/share/icons/hicolor/256x256/apps/org.jpminerals.VESTA.png
       - install -Dm644 org.jpminerals.VESTA.desktop /app/share/applications/org.jpminerals.VESTA.desktop
@@ -83,6 +84,14 @@ modules:
         url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-x86_64.tar.xz
         sha256: 119af902715dc1f4f6a65b00f98ba354f57a8aac4ff8fd1cdd03d661050ec397
         strip-components: 1
+        only-arches:
+          - x86_64
+#     - type: archive
+#       url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-arm64.tar.xz 
+#       sha256: c2a552d8bcd68cf5b25d698f2330d6b345469286c8f18990bd4a1c93c587bf84 
+#       only-arches:
+#          - aarch64
+
       - type: file
         path: desktop/org.jpminerals.VESTA.desktop
       - type: file
