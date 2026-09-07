@@ -79,11 +79,8 @@ modules:
       - install -Dm644 org.jpminerals.VESTA.metainfo.xml /app/share/metainfo/org.jpminerals.VESTA.metainfo.xml
 
       - install -Dm644 /app/lib/VESTA/LICENSE /app/share/licenses/org.jpminerals.VESTA/LICENSE
-      - install -Dm644 /app/lib/VESTA/Library_License/GL2PS_License.txt /app/share/licenses/org.jpminerals.VESTA/GL2PS_License.txt
-      - install -Dm644 /app/lib/VESTA/Library_License/JasPer_LICENSE.txt /app/share/licenses/org.jpminerals.VESTA/JasPer_LICENSE.txt
-      - install -Dm644 /app/lib/VESTA/Library_License/PocketFFT_LICENSE.txt /app/share/licenses/org.jpminerals.VESTA/PocketFFT_LICENSE.txt
-      - install -Dm644 /app/lib/VESTA/Library_License/OpenBLAS_LICENSE.txt /app/share/licenses/org.jpminerals.VESTA/OpenBLAS_LICENSE.txt
-      - install -Dm644 /app/lib/VESTA/Library_License/GotoBLAS_00License.txt /app/share/licenses/org.jpminerals.VESTA/GotoBLAS_00License.txt
+      - install -Dm644 /app/lib/VESTA/Library_License/COPYING.GL2PS /app/share/licenses/org.jpminerals.VESTA/COPYING.GL2PS
+      - install -Dm644 /app/lib/VESTA/Library_License/JasPer_LICENSE /app/share/licenses/org.jpminerals.VESTA/JasPer_LICENSE
     sources:
       - type: archive
         url: https://www.jp-minerals.org/vesta/archives/3.5.8/VESTA-gtk3.tar.bz2
