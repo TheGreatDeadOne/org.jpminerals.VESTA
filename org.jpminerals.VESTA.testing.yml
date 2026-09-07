@@ -9,31 +9,23 @@ tags:
   - beta
   - proprietary
 
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.openjdk17
-
 finish-args:
   - --share=ipc
   - --share=network
   - --socket=wayland
   - --socket=x11
+  - --socket=pulseaudio
   - --device=dri
   - --talk-name=org.freedesktop.Notifications
   - --filesystem=xdg-download
   - --filesystem=xdg-documents
   - --env=GTK_USE_PORTAL=1
-  - --env=LD_LIBRARY_PATH=/app/lib/VESTA:/app/lib/VESTA/PowderPlot
   - --env=GDK_BACKEND=x11
 
 build-options:
   no-debuginfo: true
 
 modules:
-  - name: openjdk
-    buildsystem: simple
-    build-commands:
-      - install -d /app/jre
-      - cp -a /usr/lib/sdk/openjdk17/* /app/jre/
 
   - name: glu
     buildsystem: meson
@@ -44,6 +36,9 @@ modules:
         url: https://gitlab.freedesktop.org/mesa/glu.git
         tag: glu-9.0.3
         commit: a2b96c7bba8db8fec3e02fb4227a7f7b02cabad1
+    cleanup:
+      - /include
+      - /lib/pkgconfig
 
   - name: wxwidgets
     buildsystem: autotools
