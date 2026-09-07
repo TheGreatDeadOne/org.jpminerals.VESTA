@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>org.jpminerals.VESTA</id>
-  <metadata_license>GFDL-1.3</metadata_license>
-  <project_license>VESTA3</project_license>
+  <metadata_license>GFDL-1.3-only</metadata_license>
+  <project_license>LicenseRef-proprietary</project_license>
   <name>VESTA</name>
   <icon type="stock">org.jpminerals.VESTA</icon>
-    
+
   <summary>3D visualization program for structural models and volumetric data</summary>
   <summary xml:lang="pt-BR">Programa de visualização 3D para modelos estruturais e dados volumétricos</summary>
   <summary xml:lang="es">Programa de visualización en 3D para modelos estructurales y datos volumétricos</summary>
-  
+
   <description>
     <p>VESTA is a 3D visualization program for structural models, volumetric data such as electron/nuclear densities, and crystal morphologies.</p>
     <p xml:lang="pt-BR">VESTA é um programa de visualização 3D para modelos estruturais, dados volumétricos, como densidades eletrônicas/nucleares, e morfologias cristalinas.</p>
-    <p xml:lang="es">VESTA es un programa de visualización 3D para modelos estructurales, datos volumétricos, como densidades electrónicas/nucleares, y morfologías cristalinas.</p>
+    <p xml:lang="es">VESTA es un programa de visualización en 3D para modelos estructurales, datos volumétricos, como densidades electrónicas/nucleares, y morfologías cristalinas.</p>
 
     <p>Some of the novel features of VESTA are:</p>
     <p xml:lang="pt-BR">Alguns dos recursos inovadores do VESTA são:</p>
@@ -53,14 +53,28 @@
     <category>Education</category>
   </categories>
 
+  <!-- TODO: troque pela(s) URL(s) real(is) dos seus screenshots (PNG/JPEG hospedados por você) -->
+  <screenshots>
+    <screenshot type="default">
+      <caption>Main window with a crystal structure loaded</caption>
+      <caption xml:lang="pt-BR">Janela principal com uma estrutura cristalina carregada</caption>
+      <image>https://SEU-DOMINIO-OU-REPO/screenshots/vesta-main.png</image>
+    </screenshot>
+  </screenshots>
+
   <url type="homepage">https://jp-minerals.org/vesta/</url>
-  <developer_name>Koichi Momma and Fujio Izumi</developer_name>
+
+  <developer id="jp-minerals">
+    <name>Koichi Momma and Fujio Izumi</name>
+  </developer>
 
   <launchable type="desktop-id">org.jpminerals.VESTA.desktop</launchable>
 
   <provides>
     <mediatype>application/x-vesta</mediatype>
   </provides>
+
+  <content_rating type="oars-1.1"/>
 
   <releases>
     <release version="3.90.9a" date="2026-08-15" type="development">
