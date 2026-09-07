@@ -58,7 +58,7 @@ modules:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets.git
         tag: 3.3.3.1
-        sha256: 565553ee980e925bbd8b3cdaeea0eb9f453d7dfd
+        commit: 565553ee980e925bbd8b3cdaeea0eb9f453d7dfd
     cleanup:
       - /include
       - /lib/pkgconfig
