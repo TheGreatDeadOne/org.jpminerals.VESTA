@@ -1,7 +1,7 @@
 id: org.jpminerals.VESTA
-runtime: org.freedesktop.Platform
-runtime-version: '25.08'
-sdk: org.freedesktop.Sdk
+runtime: org.gnome.Platform
+runtime-version: '50'
+sdk: org.gnome.Sdk
 command: VESTA
 
 sdk-extensions:
@@ -18,51 +18,17 @@ finish-args:
   - --env=GTK_USE_PORTAL=1
 
 modules:
-  - name: ruby
-    buildsystem: autotools
-    config-opts:
-      - --prefix=/app
-      - --disable-install-doc
-    sources:
-      - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.xz
-        sha256: 9c9d121fe3314ea7c801e690b9de981d2b9d12d7849db99c27482468a541ba0a
-    cleanup:
-      - /ruby/include
-      - /ruby/share/man
+#  - name: unifdef
+#    buildsystem: simple
+#    build-commands:
+#      - sed -i 's/constexpr/const_expr/g' unifdef.c
+#      - make
+#      - make prefix=/app install
+#    sources:
+#      - type: archive
+#        url: https://dotat.at/prog/unifdef/unifdef-2.12.tar.gz
+#        sha256: fba564a24db7b97ebe9329713ac970627b902e5e9e8b14e19e024eb6e278d10b
 
-  - name: unifdef
-    buildsystem: simple
-    build-commands:
-      - sed -i 's/constexpr/const_expr/g' unifdef.c
-      - make
-      - make prefix=/app install
-    sources:
-      - type: archive
-        url: https://dotat.at/prog/unifdef/unifdef-2.12.tar.gz
-        sha256: fba564a24db7b97ebe9329713ac970627b902e5e9e8b14e19e024eb6e278d10b
-
-  - name: webkitgtk-4.0
-    buildsystem: cmake-ninja
-    make-args:
-      - -j8
-    config-opts:
-      - -DPORT=GTK
-      - -DUSE_GTK4=OFF
-      - -DENABLE_INTROSPECTION=OFF
-      - -DENABLE_BUBBLEWRAP_SANDBOX=OFF
-      - -DUSE_WPE_RENDERER=OFF
-      - -DENABLE_GAMEPAD=OFF
-      - -DENABLE_SPELLCHECK=OFF
-      - -DUSE_WOFF2=OFF
-      - -DENABLE_SPEECH_SYNTHESIS=OFF
-      - -DUSE_LIBBACKTRACE=OFF
-      - -DUSE_SYSTEM_SYSPROF_CAPTURE=NO
-    sources:
-      - type: archive
-        url: https://webkitgtk.org/releases/webkitgtk-2.53.92.tar.xz
-        sha256: 2ab7d6b3d586539fac574401a9bfe571c098f85f7835232ae0bc0bae9c9c5bd7
-  
   - name: openjdk
     buildsystem: simple
     build-commands:
