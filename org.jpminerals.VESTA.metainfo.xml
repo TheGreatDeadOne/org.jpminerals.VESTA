@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>org.jpminerals.VESTA</id>
   <metadata_license>GFDL-1.3</metadata_license>
-  <project_license>LicenseRef-VESTA3</project_license>
+  <project_license>VESTA3</project_license>
   <name>VESTA</name>
   <icon type="stock">org.jpminerals.VESTA</icon>
     
