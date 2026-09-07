@@ -5,6 +5,8 @@ sdk: org.gnome.Sdk
 command: VESTA
 separate-locales: false
 default-branch: testing
+tags:
+  - proprietary
 
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.openjdk17
@@ -37,9 +39,10 @@ modules:
     config-opts:
       - -Dgl_provider=gl
     sources:
-      - type: archive
-        url: https://archive.mesa3d.org/glu/glu-9.0.3.tar.xz
-        sha256: bd43fe12f374b1192eb15fe20e45ff456b9bc26ab57f0eee919f96ca0f8a330f
+      - type: git
+        url: https://gitlab.freedesktop.org/mesa/glu.git
+        tag: glu-9.0.3
+        commit: a2b96c7bba8db8fec3e02fb4227a7f7b02cabad1
 
   - name: wxwidgets
     buildsystem: autotools
@@ -53,8 +56,9 @@ modules:
       - --without-libjbig
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.11/wxWidgets-3.2.11.tar.bz2
-        sha256: 6a129015bce2e914e4bf61ec4411854ad962801d47e92f2eb8340adb6a90af08
+        url: https://github.com/wxWidgets/wxWidgets.git
+        tag: 3.3.3.1
+        sha256: 565553ee980e925bbd8b3cdaeea0eb9f453d7dfd
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -68,7 +72,6 @@ modules:
       - cp -a * /app/lib/VESTA/
       - install -d /app/bin
       - install -m 755 vesta.sh /app/bin/VESTA
-
       - chmod +x /app/lib/VESTA/VESTA /app/lib/VESTA/VESTA-gui /app/lib/VESTA/VESTA-core /app/lib/VESTA/madel /app/lib/VESTA/STRUCTURE_TIDY/structure_tidy
 
       - ln -s /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 /app/lib/VESTA/libwebkit2gtk-4.0.so.37
@@ -77,6 +80,9 @@ modules:
       - install -Dm644 /app/lib/VESTA/img/logo@2x.png /app/share/icons/hicolor/256x256/apps/org.jpminerals.VESTA.png
       - install -Dm644 org.jpminerals.VESTA.desktop /app/share/applications/org.jpminerals.VESTA.desktop
       - install -Dm644 org.jpminerals.VESTA.xml /app/share/mime/packages/org.jpminerals.VESTA.xml
+      - install -Dm644 /app/lib/VESTA/LICENSE /app/share/licenses/org.jpminerals.VESTA/LICENSE
+      - install -Dm644 /app/lib/VESTA/Library_License/COPYING.GL2PS /app/share/licenses/org.jpminerals.VESTA/COPYING.GL2PS
+      - install -Dm644 /app/lib/VESTA/Library_License/JasPer_LICENSE /app/share/licenses/org.jpminerals.VESTA/JasPer_LICENSE
     sources:
       - type: archive
         url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-x86_64.tar.xz
