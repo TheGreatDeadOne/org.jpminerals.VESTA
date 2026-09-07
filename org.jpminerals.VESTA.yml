@@ -61,29 +61,16 @@ modules:
       - cp -a * /app/lib/VESTA/
       
       - install -d /app/bin
-      - |
-        cat > /app/bin/VESTA << 'EOF'
-        #!/bin/sh
-        export PATH="/app/jre/bin:$PATH"
-        export JAVA_HOME="/app/jre"
-        export LD_LIBRARY_PATH="/app/lib/VESTA:/app/lib/VESTA/PowderPlot:$LD_LIBRARY_PATH"
-        export GDK_BACKEND=x11
-        cd /app/lib/VESTA
-        exec ./VESTA "$@"
-        EOF
-      - chmod +x /app/bin/VESTA
-      - chmod +x /app/lib/VESTA/VESTA /app/lib/VESTA/VESTA-gui /app/lib/VESTA/VESTA-core /app/lib/VESTA/madel /app/lib/VESTA/STRUCTURE_TIDY/structure_tidy
+      - install -m 755 vesta.sh /app/bin/VESTA
       
-      - mkdir -p "$XDG_CONFIG_HOME"
-      - ln -sf "$XDG_CONFIG_HOME/.VESTA" "$HOME/.VESTA"
-        
+      - chmod +x /app/lib/VESTA/VESTA /app/lib/VESTA/VESTA-gui /app/lib/VESTA/VESTA-core /app/lib/VESTA/madel /app/lib/VESTA/STRUCTURE_TIDY/structure_tidy
+    
+      - ln -s /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 /app/lib/VESTA/libwebkit2gtk-4.0.so.37
+      - ln -s /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.1.so.0 /app/lib/VESTA/libjavascriptcoregtk-4.0.so.18 
+
       - install -Dm644 /app/lib/VESTA/img/logo.png /app/share/icons/hicolor/256x256/apps/org.jpminerals.VESTA.png
       - install -Dm644 org.jpminerals.VESTA.desktop /app/share/applications/org.jpminerals.VESTA.desktop
       - install -Dm644 org.jpminerals.VESTA.xml /app/share/mime/packages/org.jpminerals.VESTA.xml
-
-      - ln -s /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 /app/lib/VESTA/libwebkit2gtk-4.0.so.37
-      - ln -s /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.1.so.0 /app/lib/VESTA/libjavascriptcoregtk-4.0.so.18
-
     sources:
       - type: archive
         url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-x86_64.tar.xz
@@ -91,3 +78,7 @@ modules:
         strip-components: 1
       - type: file
         path: desktop/org.jpminerals.VESTA.desktop
+      - type: file
+        path: mime/org.jpminerals.VESTA.xml
+      - type: file
+        path: vesta.sh

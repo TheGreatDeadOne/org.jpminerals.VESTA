@@ -21,7 +21,6 @@ The build process requires the following base technologies.
 
 ### Bundled Modules
 The following components are compiled and bundled locally within the Flatpak environment:
-* **unifdef:** C preprocessor utility.
 * **OpenJDK:** Local JRE copy pointing to the extension.
 * **GLU:** OpenGL utility library required for visual processing.
 * **wxWidgets:** GUI framework configured with GTK3 and OpenGL support.
