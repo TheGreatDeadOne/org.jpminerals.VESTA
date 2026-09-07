@@ -1,25 +1,16 @@
 #!/bin/sh
-
-set -eu
-
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-VESTA_DIR="$CONFIG_DIR/VESTA"
+VESTA_CONFIG="$CONFIG_DIR/VESTA"
 
-mkdir -p "$VESTA_DIR"
+mkdir -p "$VESTA_CONFIG"
 
-TEMP_HOME="${XDG_RUNTIME_DIR:-/tmp}/vesta-home-$$"
+if [ ! -e "$HOME/.VESTA" ]; then
+    ln -s "$VESTA_CONFIG" "$HOME/.VESTA"
+fi
 
-mkdir -p "$TEMP_HOME"
-
-cleanup() {
-    rm -rf "$TEMP_HOME"
-}
-
-trap cleanup EXIT INT TERM
-
-ln -s "$VESTA_DIR" "$TEMP_HOME/.VESTA"
-
-export HOME="$TEMP_HOME"
+# Remove arquivos temporários de IPC e travas residuais de execuções anteriores
+rm -f "$HOME/.VESTA"/vesta_*
+rm -f "$HOME/.VESTA"/*.pid
 
 cd /app/lib/VESTA
 exec ./VESTA "$@"
