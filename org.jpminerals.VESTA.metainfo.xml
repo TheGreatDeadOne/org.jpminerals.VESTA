@@ -7,43 +7,21 @@
   <icon type="stock">org.jpminerals.VESTA</icon>
 
   <summary>3D visualization program for structural models and volumetric data</summary>
-  <summary xml:lang="pt-BR">Programa de visualização 3D para modelos estruturais e dados volumétricos</summary>
-  <summary xml:lang="es">Programa de visualización en 3D para modelos estructurales y datos volumétricos</summary>
 
   <description>
     <p>VESTA is a 3D visualization program for structural models, volumetric data such as electron/nuclear densities, and crystal morphologies.</p>
-    <p xml:lang="pt-BR">VESTA é um programa de visualização 3D para modelos estruturais, dados volumétricos, como densidades eletrônicas/nucleares, e morfologias cristalinas.</p>
-    <p xml:lang="es">VESTA es un programa de visualización en 3D para modelos estructurales, datos volumétricos, como densidades electrónicas/nucleares, y morfologías cristalinas.</p>
 
     <p>Some of the novel features of VESTA are:</p>
-    <p xml:lang="pt-BR">Alguns dos recursos inovadores do VESTA são:</p>
-    <p xml:lang="es">Algunas de las características novedosas de VESTA son:</p>
 
     <ul>
       <li>Deal with multiple structural models, volumetric data, and crystal morphologies in the same window.</li>
-      <li xml:lang="pt-BR">Permite trabalhar com múltiplos modelos estruturais, dados volumétricos e morfologias cristalinas na mesma janela.</li>
-      <li xml:lang="es">Permite trabajar con múltiples modelos estructurales, datos volumétricos y morfologías cristalinas en la misma ventana.</li>
-
       <li>Support multiple tabs corresponding to files.</li>
-      <li xml:lang="pt-BR">Oferece suporte a múltiplas abas correspondentes aos arquivos.</li>
-      <li xml:lang="es">Admite múltiples pestañas correspondientes a los archivos.</li>
-
       <li>Deal with virtually unlimited number of objects such as atoms, bonds polyhedra, and polygons on isosurfaces.</li>
-      <li xml:lang="pt-BR">Permite trabalhar com um número praticamente ilimitado de objetos, como átomos, ligações, poliedros e polígonos em isosuperfícies.</li>
-      <li xml:lang="es">Permite trabajar con un número prácticamente ilimitado de objetos, como átomos, enlaces, poliedros y polígonos en isosuperficies.</li>
-
       <li>Support lattice transformation from conventional to non-conventional lattice by using matrix.</li>
-      <li xml:lang="pt-BR">Permite realizar transformações de rede de uma célula convencional para uma rede não convencional utilizando matrizes.</li>
-      <li xml:lang="es">Admite la transformación de la red convencional a una red no convencional mediante matrices.</li>
-
       <li>Visualize interatomic distances and bond angles that are restrained in Rietveld analysis with RIETAN-FP.</li>
-      <li xml:lang="pt-BR">Permite visualizar distâncias interatômicas e ângulos de ligação restringidos na análise de Rietveld com o RIETAN-FP.</li>
-      <li xml:lang="es">Permite visualizar distancias interatómicas y ángulos de enlace restringidos en el análisis de Rietveld con RIETAN-FP.</li>
     </ul>
 
     <p>VESTA is a successor to two 3D visualization programs, VICS and VEND, in the VENUS software package. It is contributed free of charge for non-commercial users.</p>
-    <p xml:lang="pt-BR">VESTA é o sucessor de dois programas de visualização 3D, VICS e VEND, do pacote de software VENUS. É disponibilizado gratuitamente para usuários não comerciais.</p>
-    <p xml:lang="es">VESTA es el sucesor de dos programas de visualización 3D, VICS y VEND, incluidos en el paquete de software VENUS. Se ofrece gratuitamente a usuarios no comerciales.</p>
   </description>
 
   <categories>
@@ -57,12 +35,13 @@
   <screenshots>
     <screenshot type="default">
       <caption>Main window with a crystal structure loaded</caption>
-      <caption xml:lang="pt-BR">Janela principal com uma estrutura cristalina carregada</caption>
       <image>https://SEU-DOMINIO-OU-REPO/screenshots/vesta-main.png</image>
     </screenshot>
   </screenshots>
 
   <url type="homepage">https://jp-minerals.org/vesta/</url>
+  <url type="help">https://groups.google.com/g/vesta-discuss</url>
+  <url type="contact">mailto:vesta.dev@gmail.com</url>
 
   <developer id="jp-minerals">
     <name>Koichi Momma and Fujio Izumi</name>
@@ -74,17 +53,24 @@
     <mediatype>application/x-vesta</mediatype>
   </provides>
 
+  <recommends>
+    <control>keyboard</control>
+    <control>pointing</control>
+  </recommends>
+
   <content_rating type="oars-1.1"/>
 
   <releases>
     <release version="3.90.9a" date="2026-08-15" type="development">
-      <description>
+      <url type="details">https://jp-minerals.org/vesta/en/changes.html</url>
+      <description translate="no">
         <p>Beta release branch.</p>
       </description>
     </release>
 
     <release version="3.5.8" date="2022-08-11" type="stable">
-      <description>
+      <url type="details">https://jp-minerals.org/vesta/en/changes.html</url>
+      <description translate="no">
         <ul>
           <li>Fixed a bug that deleted objects reappeared when reopening *.vesta files since v3.5.6.</li>
           <li>Fixed a bug that wrong structure factors were calculated in some cases due to erroneous multi-threading control.</li>
@@ -98,7 +84,8 @@
     </release>
 
     <release version="3.5.7" date="2021-01-09" type="stable">
-      <description>
+      <url type="details">https://jp-minerals.org/vesta/en/changes.html</url>
+      <description translate="no">
         <ul>
           <li>Fixed a bug that breaks geometry of structural models after calculating dihedral angles.</li>
           <li>Fixed a bug that d-spacing of hkl plane was not updated correctly, again.</li>
