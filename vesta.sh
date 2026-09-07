@@ -1,19 +1,25 @@
 #!/bin/sh
 
-export PATH="/app/jre/bin:$PATH"
-export JAVA_HOME="/app/jre"
-export LD_LIBRARY_PATH="/app/lib/VESTA:/app/lib/VESTA/PowderPlot${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export GDK_BACKEND=x11
+set -eu
 
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
-mkdir -p "$CONFIG_DIR"
+VESTA_DIR="$CONFIG_DIR/VESTA"
 
-if [ -e "$HOME/.VESTA" ] && [ ! -L "$HOME/.VESTA" ]; then
-    mv "$HOME/.VESTA" "$CONFIG_DIR/.VESTA"
-fi
+mkdir -p "$VESTA_DIR"
 
-rm -f "$HOME/.VESTA"
-ln -sf "$CONFIG_DIR/.VESTA" "$HOME/.VESTA"
+TEMP_HOME="${XDG_RUNTIME_DIR:-/tmp}/vesta-home-$$"
+
+mkdir -p "$TEMP_HOME"
+
+cleanup() {
+    rm -rf "$TEMP_HOME"
+}
+
+trap cleanup EXIT INT TERM
+
+ln -s "$VESTA_DIR" "$TEMP_HOME/.VESTA"
+
+export HOME="$TEMP_HOME"
 
 cd /app/lib/VESTA
 exec ./VESTA "$@"
