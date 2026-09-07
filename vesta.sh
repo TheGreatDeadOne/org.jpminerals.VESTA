@@ -14,5 +14,4 @@ for pidfile in "$HOME/.VESTA"/*.pid; do
     fi
 done
 
-cd /app/lib/VESTA
-exec ./VESTA "$@"
+exec /app/lib/VESTA/VESTA "$@"
