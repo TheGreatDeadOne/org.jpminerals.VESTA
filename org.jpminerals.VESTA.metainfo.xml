@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.jpminerals.VESTA</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>LicenseRef-VESTA3</project_license>
+  <name>VESTA</name>
+  
+  <summary>3D visualization program for structural models and volumetric data</summary>
+  <summary xml:lang="pt-BR">Programa de visualização 3D para modelos estruturais e dados volumétricos</summary>
+  
+  <description>
+    <p>VESTA is a 3D visualization program for structural models, volumetric data such as electron/nuclear densities, and crystal morphologies.</p>
+    <p>Some of the novel features of VESTA are:</p>
+    <ul>
+      <li>Deal with multiple structural models, volumetric data, and crystal morphologies in the same window.</li>
+      <li>Support multiple tabs corresponding to files.</li>
+      <li>Deal with virtually unlimited number of objects such as atoms, bonds polyhedra, and polygons on isosurfaces.</li>
+      <li>Support lattice transformation from conventional to non-conventional lattice by using matrix.</li>
+      <li>Visualize interatomic distances and bond angles that are restrained in Rietveld analysis with RIETAN-FP.</li>
+    </ul>
+    <p>VESTA is a successor to two 3D visualization programs, VICS and VEND, in the VENUS software package. It is contributed free of charge for non-commercial users.</p>
+  </description>
+
+  <categories>
+    <category>Science</category>
+    <category>Chemistry</category>
+    <category>Physics</category>
+    <category>Education</category>
+  </categories>
+
+  <url type="homepage">https://jp-minerals.org/vesta/</url>
+  <developer_name>Koichi Momma and Fujio Izumi</developer_name>
+
+  <launchable type="desktop-id">org.jpminerals.VESTA.desktop</launchable>
+
+  <provides>
+    <mediatype>application/x-vesta</mediatype>
+  </provides>
+
+  <releases>
+    <release version="3.90.9a" date="2026-08-15" type="development">
+      <description>
+        <p>Beta release branch.</p>
+      </description>
+    </release>
+
+    <release version="3.5.8" date="2022-08-11" type="stable">
+      <description>
+        <ul>
+          <li>Fixed a bug that deleted objects reappeared when reopening *.vesta files since v3.5.6.</li>
+          <li>Fixed a bug that wrong structure factors were calculated in some cases due to erroneous multi-threading control.</li>
+          <li>Fixed a bug in the Windows version that some of states in the 2D Data Display didn't reproduce when reopening *.vesta files.</li>
+          <li>Fixed a bug that sites with huge s.u. were interpreted to overlap with another site and weren't displayed since v3.5.4.</li>
+          <li>Fixed a bug that B_ij in CIF files were interpreted as beta_ij.</li>
+          <li>When selecting a polyhedron, bond distances are now listed in ascending order.</li>
+          <li>Improved support for SHELX format and *.fcf format.</li>
+        </ul>
+      </description>
+    </release>
+
+    <release version="3.5.7" date="2021-01-09" type="stable">
+      <description>
+        <ul>
+          <li>Fixed a bug that breaks geometry of structural models after calculating dihedral angles.</li>
+          <li>Fixed a bug that d-spacing of hkl plane was not updated correctly, again.</li>
+          <li>Updated the wxWidgets library to the latest version.</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>
