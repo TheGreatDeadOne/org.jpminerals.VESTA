@@ -16,8 +16,8 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
   - --filesystem=xdg-download
   - --filesystem=xdg-documents
-  - --env=GTK_USE_PORTAL=1
-  - --env=PATH=/app/bin:/app/jre/bin:/usr/bin:/bin
+#  - --env=GTK_USE_PORTAL=1
+  - --env=PATH=/app/bin:/app/jre/bin:/app/lib/VESTA:/app/lib/VESTA/STRUCTURE_TIDY:/usr/bin:/bin
   - --env=JAVA_HOME=/app/jre
   - --env=LD_LIBRARY_PATH=/app/lib/VESTA:/app/lib/VESTA/PowderPlot
   - --env=GDK_BACKEND=x11
