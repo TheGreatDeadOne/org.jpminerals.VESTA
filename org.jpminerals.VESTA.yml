@@ -1,0 +1,104 @@
+id: org.jpminerals.VESTA
+runtime: org.gnome.Platform
+runtime-version: '50'
+sdk: org.gnome.Sdk
+command: VESTA
+separate-locales: false
+default-branch: stable
+tags:
+  - stable
+  - proprietary
+
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=dri
+  - --talk-name=org.freedesktop.Notifications
+  - --filesystem=xdg-download
+  - --filesystem=xdg-documents
+  - --env=GTK_USE_PORTAL=1
+  - --env=GDK_BACKEND=x11
+
+build-options:
+  no-debuginfo: true
+
+modules:
+
+  - name: glu
+    buildsystem: meson
+    config-opts:
+      - -Dgl_provider=gl
+    sources:
+      - type: git
+        url: https://gitlab.freedesktop.org/mesa/glu.git
+        tag: glu-9.0.3
+        commit: a2b96c7bba8db8fec3e02fb4227a7f7b02cabad1
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+
+  - name: wxwidgets
+    buildsystem: autotools
+    config-opts:
+      - --with-gtk=3
+      - --with-opengl
+      - --enable-shared
+      - --disable-debug
+      - --disable-tests
+      - --disable-webview
+      - --without-libjbig
+    sources:
+      - type: git
+        url: https://github.com/wxWidgets/wxWidgets.git
+        tag: v3.3.3.1
+        commit: 565553ee980e925bbd8b3cdaeea0eb9f453d7dfd
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /share/aclocal
+      - /bin/wx-config
+
+  - name: vesta
+    buildsystem: simple
+    build-commands:
+      - install -d /app/lib/VESTA
+      - cp -a * /app/lib/VESTA/
+      - install -d /app/bin
+      - install -m 755 vesta.sh /app/bin/VESTA
+      - chmod +x /app/lib/VESTA/VESTA /app/lib/VESTA/VESTA-gui /app/lib/VESTA/VESTA-core /app/lib/VESTA/madel /app/lib/VESTA/STRUCTURE_TIDY/structure_tidy
+
+      - ln -s /usr/lib/x86_64-linux-gnu/libwebkit2gtk-4.1.so.0 /app/lib/VESTA/libwebkit2gtk-4.0.so.37
+      - ln -s /usr/lib/x86_64-linux-gnu/libjavascriptcoregtk-4.1.so.0 /app/lib/VESTA/libjavascriptcoregtk-4.0.so.18
+
+      - install -Dm644 /app/lib/VESTA/img/logo@2x.png /app/share/icons/hicolor/256x256/apps/org.jpminerals.VESTA.png
+      - install -Dm644 org.jpminerals.VESTA.desktop /app/share/applications/org.jpminerals.VESTA.desktop
+      - install -Dm644 org.jpminerals.VESTA.xml /app/share/mime/packages/org.jpminerals.VESTA.xml
+      - install -Dm644 /app/lib/VESTA/LICENSE /app/share/licenses/org.jpminerals.VESTA/LICENSE
+      - install -Dm644 /app/lib/VESTA/Library_License/GL2PS_License.txt /app/share/licenses/org.jpminerals.VESTA/GL2PS_License.txt
+      - install -Dm644 /app/lib/VESTA/Library_License/JasPer_LICENSE.txt /app/share/licenses/org.jpminerals.VESTA/JasPer_LICENSE.txt
+      - install -Dm644 /app/lib/VESTA/Library_License/PocketFFT_LICENSE.txt /app/share/licenses/org.jpminerals.VESTA/PocketFFT_LICENSE.txt
+      - install -Dm644 /app/lib/VESTA/Library_License/OpenBLAS_LICENSE.txt /app/share/licenses/org.jpminerals.VESTA/OpenBLAS_LICENSE.txt
+      - install -Dm644 /app/lib/VESTA/Library_License/GotoBLAS_00License.txt /app/share/licenses/org.jpminerals.VESTA/GotoBLAS_00License.txt
+    sources:
+      - type: archive
+        url: https://www.jp-minerals.org/vesta/archives/3.5.8/VESTA-gtk3.tar.bz2
+        sha256: 78bef025c2b31f1d64c9c7e06ad2b139d252b3a686893ee79ac74b3021868df8
+        strip-components: 1
+        only-arches:
+          - x86_64
+#     - type: archive
+#       url: https://jp-minerals.org/vesta/archives/testing/VESTA-gtk3-arm64.tar.xz 
+#       sha256: c2a552d8bcd68cf5b25d698f2330d6b345469286c8f18990bd4a1c93c587bf84
+#       strip-components: 1 
+#       only-arches:
+#          - aarch64
+
+      - type: file
+        path: desktop/org.jpminerals.VESTA.desktop
+      - type: file
+        path: mime/org.jpminerals.VESTA.xml
+      - type: file
+        path: vesta.sh
