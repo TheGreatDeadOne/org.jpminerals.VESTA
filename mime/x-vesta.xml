@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-vesta">
+    <comment>Crystal structure file for VESTA</comment>
+    <glob pattern="*.vesta" priority="60"/>
+    <glob pattern="*.vcs" priority="60"/>
+    <glob pattern="*.cif" priority="60"/>
+    <glob pattern="*.xyz" priority="60"/>
+    <glob pattern="*.vasp" priority="60"/>
+    <glob pattern="*.amc" priority="60"/>
+    <glob pattern="*.asse" priority="60"/>
+    <glob pattern="*.cmt" priority="60"/>
+    <glob pattern="feff.inp" priority="60"/>
+    <glob pattern="*.in" priority="60"/>
+    <glob pattern="*.EXP" priority="60"/>
+    <glob pattern="*.ins" priority="60"/>
+    <glob pattern="*.lst" priority="60"/>
+    <glob pattern="*.res" priority="60"/>
+    <glob pattern="*.sto" priority="60"/>
+    <glob pattern="*.struct" priority="60"/>
+    <glob pattern="*.xtl" priority="60"/>
+    <glob pattern="*.pri" priority="60"/>
+    <glob pattern="*.prim" priority="60"/>
+    <glob pattern="*.den" priority="60"/>
+    <glob pattern="*.eb" priority="60"/>
+    <glob pattern="*.grd" priority="60"/>
+    <glob pattern="*.ggrid" priority="60"/>
+    <glob pattern="*.pgrid" priority="60"/>
+    <glob pattern="*.m3d" priority="60"/>
+    <glob pattern="*.sca" priority="60"/>
+    <glob pattern="*.scat" priority="60"/>
+    <glob pattern="*.rho" priority="60"/>
+    <glob pattern="*.fou" priority="60"/>
+    <glob pattern="*.xplor" priority="60"/>
+    <glob pattern="*.cell" priority="60"/>
+    <glob pattern="*.charg_frm" priority="60"/>
+    <icon name="org.jpminerals.VESTA"/>
+  </mime-type>
+</mime-info>
