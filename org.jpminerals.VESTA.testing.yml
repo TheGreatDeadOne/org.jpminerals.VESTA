@@ -16,7 +16,6 @@ finish-args:
   - --socket=x11
   - --socket=pulseaudio
   - --device=dri
-  - --talk-name=org.freedesktop.Notifications
   - --filesystem=xdg-download
   - --env=GTK_USE_PORTAL=1
 
