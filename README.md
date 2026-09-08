@@ -16,12 +16,8 @@ The build process requires the following base technologies.
 * **Runtime:** org.gnome.Platform (Version 50)
 * **SDK:** org.gnome.Sdk (Version 50)
 
-### Extensions
-* **OpenJDK 17:** org.freedesktop.Sdk.Extension.openjdk17 (Provides the Java Runtime Environment)
-
 ### Bundled Modules
 The following components are compiled and bundled locally within the Flatpak environment:
-* **OpenJDK:** Local JRE copy pointing to the extension.
 * **GLU:** OpenGL utility library required for visual processing.
 * **wxWidgets:** GUI framework configured with GTK3 and OpenGL support.
 
@@ -35,11 +31,7 @@ VESTA runs inside a Flatpak sandbox, which by default has no access to the host 
 | `--share=network` | Network access. |
 | `--socket=x11` / `--socket=wayland` | Access to the display server, so the GUI can be drawn on screen. |
 | `--device=dri` | Direct access to the GPU (Direct Rendering Infrastructure), required for hardware-accelerated OpenGL rendering of crystal structures. |
-| `--talk-name=org.freedesktop.Notifications` | Allows VESTA to send desktop notifications. |
 | `--filesystem=xdg-download` | Read/write access to the user's Downloads folder, so structure files can be opened and saved there. |
-| `--filesystem=xdg-documents` | Read/write access to the user's Documents folder, for the same reason. |
-| `--env=JAVA_HOME`, `--env=PATH`, `--env=LD_LIBRARY_PATH` | Internal wiring so the bundled JRE, shared libraries and helper binaries (e.g. `STRUCTURE_TIDY`) are located correctly at runtime. |
-| `--env=GDK_BACKEND=x11` | Forces the classic X11 backend for GTK, needed because the wxWidgets + Java + GTK3 stack is not fully reliable under native Wayland. |
 
 No broader filesystem access (such as full home directory access) is granted; VESTA can only read/write inside its own sandbox data directory plus the two folders listed above.
 
