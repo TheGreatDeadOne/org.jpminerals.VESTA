@@ -16,7 +16,6 @@ finish-args:
   - --socket=x11
   - --socket=pulseaudio
   - --device=dri
-  - --filesystem=xdg-download
   - --env=GTK_USE_PORTAL=1
 
 build-options:
