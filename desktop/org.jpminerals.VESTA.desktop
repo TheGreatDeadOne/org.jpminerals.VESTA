@@ -2,7 +2,7 @@
 Name=VESTA
 GenericName=Crystal Structure Visualizer
 Comment=Visualization for Electronic and Structural Analysis
-Exec=VESTA %f
+Exec=VESTA %F
 Icon=org.jpminerals.VESTA
 Terminal=false
 Type=Application
